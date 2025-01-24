@@ -1,0 +1,128 @@
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rifas Online</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card mb-4 create-rifa-card">
+          <div class="card-body">
+            <h2 class="card-title mb-4">📊 Criar Nova Rifa</h2>
+            <form id="rifaForm">
+              <div class="mb-3">
+                <input type="text" class="form-control" id="rifaName" placeholder="Nome da Rifa" required>
+              </div>
+              <div class="mb-3">
+                <input type="number" class="form-control" id="rifaPrice" placeholder="Preço do Bilhete" step="0.01" required>
+              </div>
+              <div class="mb-3">
+                <input type="number" class="form-control" id="totalTickets" placeholder="Total de Bilhetes" required>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Criar Rifa</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-8">
+        <div class="card rifas-list-card">
+          <div class="card-body">
+            <h2 class="card-title mb-4">Rifas Disponíveis</h2>
+            <div id="rifasContainer" class="row g-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticket Purchase Modal -->
+  <div class="modal fade" id="ticketModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalRifaName"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="ticket-info">
+                <p>Preço do Bilhete: <span id="modalTicketPrice"></span></p>
+                <p>Total de Bilhetes: <span id="modalTotalTickets"></span></p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="ticket-selection">
+                <div class="mb-3">
+                  <label for="selectedTicketNumbers" class="form-label">Selecione os Bilhetes (separados por vírgula)</label>
+                  <input type="text" id="selectedTicketNumbers" class="form-control" placeholder="Ex: 1,3,5">
+                </div>
+                <button id="buyTicketBtn" class="btn btn-success w-100">Comprar Bilhetes</button>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-grid mt-4" id="ticketGridModal"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Purchase Confirmation Modal -->
+  <div class="modal fade" id="purchaseConfirmationModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmação de Compra</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <h4>Compra Realizada</h4>
+          <div id="purchaseQRCodeContainer" class="mb-3"></div>
+          <div id="purchaseDetails"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Raffle Draw Modal -->
+  <div class="modal fade" id="drawRaffleModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Realizar Sorteio</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div id="drawRaffleContent">
+            <select id="raffleSelectForDraw" class="form-control mb-3">
+              <option value="">Selecione uma Rifa</option>
+            </select>
+            <button id="performDrawBtn" class="btn btn-primary w-100">Realizar Sorteio</button>
+          </div>
+          <div id="drawResultContent" class="text-center d-none">
+            <h3>Resultado do Sorteio</h3>
+            <div id="winnerDetails" class="alert alert-success"></div>
+            <button id="resetDrawBtn" class="btn btn-secondary">Novo Sorteio</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#drawRaffleModal">
+      🎲 Realizar Sorteio
+    </button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="database.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
