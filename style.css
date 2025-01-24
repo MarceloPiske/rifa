@@ -1,0 +1,108 @@
+:root {
+  --primary-color: #6a11cb;
+  --secondary-color: #2575fc;
+}
+
+body {
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.create-rifa-card, .rifas-list-card {
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.create-rifa-card .card-title,
+.rifas-list-card .card-title {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+}
+
+.btn-warning {
+  background: linear-gradient(to right, #ffc107, #ff9800);
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.btn-warning:hover {
+  transform: scale(1.05);
+}
+
+#rifasContainer .card {
+  transition: all 0.3s ease;
+}
+
+#rifasContainer .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.ticket-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 8px;
+}
+
+.ticket {
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ticket.sold {
+  background-color: #dc3545;
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.ticket.available {
+  background-color: #28a745;
+  color: white;
+}
+
+.ticket.available:hover {
+  opacity: 0.8;
+}
+
+.ticket-info {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+#drawResultContent .alert-success {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#purchaseQRCodeContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+#purchaseQRCodeContainer img {
+  max-width: 200px;
+  height: auto;
+}
+
+#purchaseDetails {
+  text-align: center;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+}
